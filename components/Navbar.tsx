@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import RabiscoLogo from './RabiscoLogo'
 
 const links = [
@@ -77,6 +77,7 @@ export default function Navbar() {
             </SheetTrigger>
 
             <SheetContent side="top" className="bg-white border-b border-rab-dark/8 shadow-soft px-6 py-5">
+              <SheetTitle className="sr-only">Menu</SheetTitle>
               <nav className="grid gap-1">
                 {links.map((l, i) => (
                   <a
