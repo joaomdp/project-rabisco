@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter, Archivo_Black, Caveat } from 'next/font/google'
+import { Inter, Archivo_Black, Caveat, Geist } from 'next/font/google'
 import './globals.css'
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   subsets: ['latin'],
@@ -43,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${archivoBlack.variable} ${caveat.variable}`}
+      className={cn(inter.variable, archivoBlack.variable, caveat.variable, "font-sans", geist.variable)}
     >
       <body>{children}</body>
     </html>
