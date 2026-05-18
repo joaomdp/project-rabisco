@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, Rule } from 'sanity'
 
 export const depoimentoType = defineType({
   name: 'depoimento',
@@ -9,25 +9,25 @@ export const depoimentoType = defineType({
       name: 'name',
       title: 'Nome completo',
       type: 'string',
-      validation: (r: any) => r.required(),
+      validation: (r: Rule) => r.required(),
     }),
     defineField({
       name: 'role',
       title: 'Cargo · Empresa',
       type: 'string',
-      validation: (r: any) => r.required(),
+      validation: (r: Rule) => r.required(),
     }),
     defineField({
       name: 'initials',
       title: 'Iniciais (máx 2 caracteres)',
       type: 'string',
-      validation: (r: any) => r.required().max(2),
+      validation: (r: Rule) => r.required().max(2),
     }),
     defineField({
       name: 'quote',
       title: 'Depoimento',
       type: 'text',
-      validation: (r: any) => r.required(),
+      validation: (r: Rule) => r.required(),
     }),
     defineField({
       name: 'cardStyle',
@@ -40,7 +40,7 @@ export const depoimentoType = defineType({
         ],
         layout: 'radio',
       },
-      validation: (r: any) => r.required(),
+      validation: (r: Rule) => r.required(),
     }),
     defineField({
       name: 'avatarColor',
@@ -54,7 +54,7 @@ export const depoimentoType = defineType({
         ],
         layout: 'radio',
       },
-      validation: (r: any) => r.required(),
+      validation: (r: Rule) => r.required(),
     }),
     defineField({
       name: 'raised',
@@ -66,7 +66,7 @@ export const depoimentoType = defineType({
       name: 'order',
       title: 'Ordem de exibição',
       type: 'number',
-      validation: (r: any) => r.required(),
+      validation: (r: Rule) => r.required(),
     }),
   ],
   preview: {
