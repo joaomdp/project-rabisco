@@ -7,10 +7,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', display: 'swap' })
 const gulfsDisplay = localFont({
-  src: [
-    { path: './fonts/gulfs-display-normal.woff2', format: 'woff2' },
-    { path: './fonts/gulfs-display-normal.woff',  format: 'woff'  },
-  ],
+  src: './fonts/gulfs-display-normal.woff2',
   variable: '--font-gulfs-display',
   display: 'swap',
 })

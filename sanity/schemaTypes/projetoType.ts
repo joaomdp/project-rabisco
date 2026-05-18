@@ -9,7 +9,7 @@ export const projetoType = defineType({
       name: 'title',
       title: 'Nome do projeto',
       type: 'string',
-      validation: (r: Rule) => r.required(),
+      validation: (r) => r.required(),
     }),
     defineField({
       name: 'tag',
@@ -21,20 +21,20 @@ export const projetoType = defineType({
         ),
         layout: 'radio',
       },
-      validation: (r: Rule) => r.required(),
+      validation: (r) => r.required(),
     }),
     defineField({
       name: 'desc',
       title: 'Descrição curta',
       type: 'string',
-      validation: (r: Rule) => r.required(),
+      validation: (r) => r.required(),
     }),
     defineField({
       name: 'result',
       title: 'Resultado alcançado',
       type: 'string',
       description: 'Ex: +340% engajamento, R$ 187k em 14 dias',
-      validation: (r: Rule) => r.required(),
+      validation: (r) => r.required(),
     }),
     defineField({
       name: 'theme',
@@ -51,13 +51,13 @@ export const projetoType = defineType({
         ],
         layout: 'radio',
       },
-      validation: (r: Rule) => r.required(),
+      validation: (r) => r.required(),
     }),
     defineField({
       name: 'order',
       title: 'Ordem de exibição',
       type: 'number',
-      validation: (r: Rule) => r.required(),
+      validation: (r) => r.required(),
     }),
   ],
   preview: {
