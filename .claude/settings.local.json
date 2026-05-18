@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(superpowers:brainstorming)",
+      "Skill(superpowers:writing-plans)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Skill(superpowers:subagent-driven-development)",
+      "Bash(npx tsc *)",
+      "Bash(npm list *)",
+      "Bash(npm install *)",
+      "Skill(superpowers:finishing-a-development-branch)",
+      "Bash(npm test *)",
+      "Bash(git push *)",
+      "Bash(gh auth *)",
+      "PowerShell(gh auth *)",
+      "Bash(git remote *)"
+    ]
+  }
+}

@@ -1,11 +1,19 @@
 import type { Metadata } from 'next'
-import { Inter, Archivo_Black, Caveat } from 'next/font/google'
+import { Inter, Caveat } from 'next/font/google'
+import localFont from 'next/font/local'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
-const archivoBlack = Archivo_Black({ weight: '400', subsets: ['latin'], variable: '--font-archivo-black', display: 'swap' })
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', display: 'swap' })
+const gulfsDisplay = localFont({
+  src: [
+    { path: './fonts/gulfs-display-normal.woff2', format: 'woff2' },
+    { path: './fonts/gulfs-display-normal.woff',  format: 'woff'  },
+  ],
+  variable: '--font-gulfs-display',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Rabisco — Agência de Marketing Digital',
@@ -23,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${archivoBlack.variable} ${caveat.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${caveat.variable} ${gulfsDisplay.variable}`}>
       <body>
         {children}
         <Toaster position="bottom-center" richColors />

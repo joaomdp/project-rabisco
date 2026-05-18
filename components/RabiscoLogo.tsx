@@ -17,12 +17,12 @@ export default function RabiscoLogo({ className = '', size = 'normal', hideSubti
     <div className={`inline-flex flex-col items-start ${className}`}>
       <div
         style={{
-          fontFamily:    'var(--font-archivo-black), sans-serif',
+          fontFamily:    'var(--font-gulfs-display)',
           fontWeight:    900,
           lineHeight:    1,
           display:       'flex',
           alignItems:    'baseline',
-          letterSpacing: '-0.045em',
+          letterSpacing: '0.06em',
           fontSize:      main,
         }}
       >
@@ -46,7 +46,7 @@ export default function RabiscoLogo({ className = '', size = 'normal', hideSubti
         <div style={{ marginTop: '-2px', display: 'inline-block' }}>
           <div
             style={{
-              fontFamily:    'var(--font-archivo-black), sans-serif',
+              fontFamily:    'var(--font-sans)',
               fontWeight:    500,
               color:         '#FF007A',
               letterSpacing: '0.18em',
