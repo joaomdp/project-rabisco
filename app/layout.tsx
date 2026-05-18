@@ -1,28 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter, Archivo_Black, Caveat, Geist } from 'next/font/google'
+import { Inter, Archivo_Black, Caveat } from 'next/font/google'
+import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const archivoBlack = Archivo_Black({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-archivo-black',
-  display: 'swap',
-})
-
-const caveat = Caveat({
-  subsets: ['latin'],
-  variable: '--font-caveat',
-  display: 'swap',
-})
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+const archivoBlack = Archivo_Black({ weight: '400', subsets: ['latin'], variable: '--font-archivo-black', display: 'swap' })
+const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'Rabisco — Agência de Marketing Digital',
@@ -38,17 +21,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="pt-BR"
-      className={cn(inter.variable, archivoBlack.variable, caveat.variable, "font-sans", geist.variable)}
-    >
-      <body>{children}</body>
+    <html lang="pt-BR" className={`${inter.variable} ${archivoBlack.variable} ${caveat.variable}`}>
+      <body>
+        {children}
+        <Toaster position="bottom-center" richColors />
+      </body>
     </html>
   )
 }
