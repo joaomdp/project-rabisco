@@ -1,13 +1,10 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import Reveal from './Reveal'
+import { getProjetos, type ProjetoTheme } from '@/sanity/queries'
 
-type Project = {
-  num: string
-  tag: string
-  title: string
-  desc: string
-  result: string
+type ThemeConfig = {
   bg: string
+  bgStyle?: CSSProperties
   tagClass: string
   numClass: string
   textClass: string
@@ -16,13 +13,8 @@ type Project = {
   decor: ReactNode
 }
 
-const projects: Project[] = [
-  {
-    num: '01',
-    tag: 'Branding',
-    title: 'Açaí Maré Alta',
-    desc: 'Rebranding completo + redes sociais',
-    result: '+340% engajamento',
+const THEMES: Record<ProjetoTheme, ThemeConfig> = {
+  'rosa-escuro': {
     bg: 'bg-gradient-to-br from-rab-pink via-rab-pink2 to-rab-deep',
     tagClass: 'bg-white/15 backdrop-blur text-white',
     numClass: 'text-white/40',
@@ -36,12 +28,7 @@ const projects: Project[] = [
       </svg>
     ),
   },
-  {
-    num: '02',
-    tag: 'Vídeo',
-    title: 'Studio Brasa',
-    desc: 'Série de comerciais para TV e redes',
-    result: '+1.2M de views',
+  'amarelo': {
     bg: 'bg-gradient-to-br from-rab-yellow via-yellow-400 to-rab-pink',
     tagClass: 'bg-rab-dark text-rab-yellow',
     numClass: 'text-rab-dark/30',
@@ -58,12 +45,7 @@ const projects: Project[] = [
       </>
     ),
   },
-  {
-    num: '03',
-    tag: 'Tráfego',
-    title: 'Loja Iaiá Modas',
-    desc: 'Campanha de Black Friday Meta Ads',
-    result: 'R$ 187k em 14 dias',
+  'rosa-claro': {
     bg: 'bg-gradient-to-br from-rab-pink2 via-pink-400 to-rab-yellow',
     tagClass: 'bg-rab-dark text-white',
     numClass: 'text-rab-dark/30',
@@ -76,34 +58,22 @@ const projects: Project[] = [
       </svg>
     ),
   },
-  {
-    num: '04',
-    tag: 'Identidade',
-    title: 'Bistrô Catarina',
-    desc: 'Logo, cardápio, fachada e packaging',
-    result: '+62% no ticket médio',
+  'profundo': {
     bg: '',
+    bgStyle: { background: 'radial-gradient(circle at 30% 30%, #FF4DA6 0%, #1F0033 75%)' },
     tagClass: 'bg-white/15 backdrop-blur text-white',
     numClass: 'text-white/30',
     textClass: 'text-white',
     descClass: 'text-white/80',
     resultClass: 'bg-rab-yellow text-rab-dark',
     decor: (
-      <>
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 30%, #FF4DA6 0%, #1F0033 75%)' }} />
-        <svg className="absolute inset-0 w-full h-full opacity-80" viewBox="0 0 400 500" preserveAspectRatio="none">
-          <path d="M40 250 C 100 150, 200 350, 360 200" stroke="#FFEA00" strokeWidth="7" strokeLinecap="round" fill="none" />
-          <path d="M40 320 C 140 260, 240 400, 360 300" stroke="#fff" strokeWidth="5" strokeLinecap="round" fill="none" />
-        </svg>
-      </>
+      <svg className="absolute inset-0 w-full h-full opacity-80" viewBox="0 0 400 500" preserveAspectRatio="none">
+        <path d="M40 250 C 100 150, 200 350, 360 200" stroke="#FFEA00" strokeWidth="7" strokeLinecap="round" fill="none" />
+        <path d="M40 320 C 140 260, 240 400, 360 300" stroke="#fff" strokeWidth="5" strokeLinecap="round" fill="none" />
+      </svg>
     ),
   },
-  {
-    num: '05',
-    tag: 'Social',
-    title: 'Salão Vibe',
-    desc: 'Gestão de Instagram + TikTok',
-    result: '+28k seguidores em 4 meses',
+  'solar': {
     bg: 'bg-gradient-to-tl from-rab-pink via-rab-pink2 to-rab-yellow',
     tagClass: 'bg-rab-dark text-white',
     numClass: 'text-rab-dark/30',
@@ -116,12 +86,7 @@ const projects: Project[] = [
       </svg>
     ),
   },
-  {
-    num: '06',
-    tag: 'Lançamento',
-    title: 'Curso Decola',
-    desc: 'Lançamento digital com VSL e tráfego',
-    result: 'R$ 412k em uma semana',
+  'neon': {
     bg: 'bg-gradient-to-br from-rab-pink via-pink-500 to-rab-deep',
     tagClass: 'bg-white/15 backdrop-blur text-white',
     numClass: 'text-white/30',
@@ -144,9 +109,11 @@ const projects: Project[] = [
       </>
     ),
   },
-]
+}
 
-export default function Portfolio() {
+export default async function Portfolio() {
+  const projects = await getProjetos()
+
   return (
     <section id="portfolio" className="relative py-24 md:py-36 bg-rab-snow overflow-hidden">
 
@@ -179,24 +146,31 @@ export default function Portfolio() {
         </Reveal>
 
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p, i) => (
-            <Reveal key={p.num} delay={0.05 * i}>
-              <article className={`project group rounded-3xl overflow-hidden bg-rab-dark relative aspect-[4/5] cursor-pointer ${p.bg}`}>
-                {p.decor}
-                <div className="absolute inset-x-0 top-0 p-6 flex items-center justify-between">
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest ${p.tagClass}`}>{p.tag}</span>
-                  <span className={`font-display text-xl ${p.numClass}`}>{p.num}</span>
-                </div>
-                <div className={`absolute inset-x-0 bottom-0 p-6 ${p.textClass}`}>
-                  <h3 className="font-display text-3xl leading-tight">{p.title}</h3>
-                  <p className={`text-sm mt-1 ${p.descClass}`}>{p.desc}</p>
-                  <div className={`reveal-result mt-4 inline-flex items-center gap-2 font-bold px-4 py-2 rounded-full text-sm ${p.resultClass}`}>
-                    {p.result}
+          {projects.map((p, i) => {
+            const t = THEMES[p.theme]
+            const num = String(i + 1).padStart(2, '0')
+            return (
+              <Reveal key={p._id} delay={0.05 * i}>
+                <article
+                  className={`project group rounded-3xl overflow-hidden bg-rab-dark relative aspect-[4/5] cursor-pointer ${t.bg}`}
+                  style={t.bgStyle}
+                >
+                  {t.decor}
+                  <div className="absolute inset-x-0 top-0 p-6 flex items-center justify-between">
+                    <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest ${t.tagClass}`}>{p.tag}</span>
+                    <span className={`font-display text-xl ${t.numClass}`}>{num}</span>
                   </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                  <div className={`absolute inset-x-0 bottom-0 p-6 ${t.textClass}`}>
+                    <h3 className="font-display text-3xl leading-tight">{p.title}</h3>
+                    <p className={`text-sm mt-1 ${t.descClass}`}>{p.desc}</p>
+                    <div className={`reveal-result mt-4 inline-flex items-center gap-2 font-bold px-4 py-2 rounded-full text-sm ${t.resultClass}`}>
+                      {p.result}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            )
+          })}
         </div>
 
         <div className="mt-10 text-center md:hidden">
