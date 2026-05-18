@@ -1,26 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand colors */
+  --color-rab-pink:  #FF007A;
+  --color-rab-pink2: #FF4DA6;
+  --color-rab-yellow:#FFEA00;
+  --color-rab-dark:  #1F1F1F;
+  --color-rab-deep:  #1F0033;
+  --color-rab-cream: #FFF0F7;
+  --color-rab-snow:  #FFFBFC;
+
+  /* Fonts — referencia variáveis CSS injetadas pelo next/font no <html> */
+  --font-sans:    var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-archivo-black), sans-serif;
+  --font-hand:    var(--font-caveat), cursive;
+
+  /* Shadows */
+  --shadow-glow: 0 14px 40px -10px rgba(255, 0, 122, 0.45);
+  --shadow-soft: 0 30px 60px -30px rgba(31, 0, 51, 0.18);
+
+  /* Animations */
+  --animate-marquee:  marquee 28s linear infinite;
+  --animate-float-y:  float-y 6s ease-in-out infinite;
+  --animate-wiggle:   wiggle 0.6s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float-y {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50%       { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50%       { transform: rotate(2deg); }
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background-color: #FFFBFC;
+    color: #1F1F1F;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+  ::selection { background: #FF007A; color: white; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .hero-warm {
+    background:
+      radial-gradient(60% 50% at 12% 18%, rgba(255,234,0,.25) 0%, transparent 60%),
+      radial-gradient(50% 45% at 88% 10%, rgba(255,77,166,.35) 0%, transparent 60%),
+      radial-gradient(60% 55% at 80% 90%, rgba(255,0,122,.18) 0%, transparent 60%),
+      linear-gradient(180deg, #FFFBFC 0%, #FFF0F7 100%);
+  }
+
+  .cta-deep {
+    background:
+      radial-gradient(60% 50% at 15% 10%, rgba(255,0,122,.55) 0%, transparent 60%),
+      radial-gradient(45% 40% at 85% 90%, rgba(255,234,0,.18) 0%, transparent 60%),
+      linear-gradient(135deg, #1F0033 0%, #2A0052 100%);
+  }
+
+  .stripe-pink {
+    background: repeating-linear-gradient(45deg, #FF007A 0 18px, #FF4DA6 18px 36px);
+  }
+
+  .hand-underline {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14'><path d='M3 9 C 60 0, 140 14, 297 5' stroke='%23FF007A' stroke-width='5' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% .55em;
+    padding-bottom: .15em;
+  }
+
+  .nav-solid {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid rgba(31, 0, 51, 0.06);
+    box-shadow: 0 6px 24px -16px rgba(31, 0, 51, 0.18);
+  }
+
+  .avatar-bg {
+    background:
+      radial-gradient(circle at 35% 30%, #FFB7D5 0 22%, transparent 23%),
+      radial-gradient(circle at 65% 30%, #FFD7C2 0 22%, transparent 23%),
+      linear-gradient(180deg, #FF4DA6 0%, #FF007A 100%);
+  }
+
+  .btn-shine { position: relative; overflow: hidden; }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .8s;
+  }
+  .btn-shine:hover::after { transform: translateX(120%); }
+
+  .project { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s; }
+  .project:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 30px 60px -20px rgba(255,0,122,.45); }
+  .project .reveal-result {
+    transform: translateY(120%);
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .project:hover .reveal-result { transform: translateY(0); }
+
+  .svc { transition: transform .4s ease, box-shadow .4s ease; }
+  .svc:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -20px rgba(31,0,51,.18); }
 }
