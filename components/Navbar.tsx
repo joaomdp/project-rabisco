@@ -61,21 +61,19 @@ export default function Navbar() {
 
           {/* Mobile drawer via shadcn Sheet */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="lg:hidden w-10 h-10 grid place-items-center rounded-full bg-rab-dark/5 hover:bg-rab-pink/10 text-rab-dark transition"
-                aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-              >
-                {open ? (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-                  </svg>
-                )}
-              </button>
+            <SheetTrigger
+              className="lg:hidden w-10 h-10 grid place-items-center rounded-full bg-rab-dark/5 hover:bg-rab-pink/10 text-rab-dark transition"
+              aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+            >
+              {open ? (
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              )}
             </SheetTrigger>
 
             <SheetContent side="top" className="bg-white border-b border-rab-dark/8 shadow-soft px-6 py-5">
